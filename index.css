@@ -5,7 +5,101 @@ body,main{
     background-color: black;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     box-sizing: border-box;
+    overflow: hidden;
 }
+.window {
+  background-color: black;
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  /* animation: fade-out 4s cubic-bezier(.74, .06, .4, .92) forwards;
+  animation-delay: 7s; */
+  z-index: 10;
+}
+.welcome {
+  position: absolute;
+  z-index: 11;
+  animation: fade-welcome 6s cubic-bezier(.74, .06, .4, .92) infinite forwards;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  opacity: 0;
+  text-align: center;
+  font-size: bold;
+  width: 100%;
+}
+.welcome p{
+  font-size: 6rem;
+  color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgb(255, 255, 255);
+}
+@keyframes fade-out {
+  0% {
+    width: 100vw;
+    transform-origin: left;
+    transform: scaleX(1)
+  }
+
+  100% {
+    width: 0vw;
+    display: none;
+    transform: scaleX(0);
+    display: none;
+  }
+}
+@keyframes fade-welcome {
+  0% {
+      opacity: .0;
+  }
+  30% {
+       opacity: 1;
+  }
+  31% {
+       opacity: .9;
+      
+  }
+  33% {
+       opacity: 1;  
+  }
+  34% {
+       opacity: .7;
+  
+  }
+  35% {
+       opacity: 1;
+   
+  }
+  
+  80%{
+       opacity: 1;
+  }  
+  85%{
+    opacity: .5;
+}
+97%{
+  opacity: 1;
+}
+  99% {      
+    opacity: .5;
+  }  100% {      
+    opacity: .3;
+  }
+}
+@keyframes fade-welcome-out {
+  0% {
+      opacity: 1;
+    }
+   100% {      
+    opacity: 0;
+    display: none;
+  }
+}
+
+
+
+
 main{
    background-color: aliceblue;
     height: 100%;
@@ -109,11 +203,13 @@ main{
     width: 25%;
     gap: 8px;
     min-height: 99vh;
+   
   }
   .main-col > .main-col-image {
     aspect-ratio: 1 / 1.8;
     object-fit: cover;
     height: 100%;
+    
   }
   .lo{
     transition: all 0.5s ease;

@@ -3,14 +3,66 @@ const iconMenu = document.getElementById("menu")
 const iconClose = document.getElementById("close")
 const main = document.getElementById("0")
 const navLinks = document.getElementById("nav-links")
-const body = document.getElementById("B")
+const body =  document.querySelector('body');
 const scrollingDiv = document.getElementsByClassName("lo")
 const navLinkBar = document.getElementsByClassName("nav-link")
+
+
 let bodyStatus = document.body.dataset.nav
 
 
-const scrollingDivs = document.querySelectorAll('.main-col.lo');
 
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Get all the images with the "main-col-image" class
+  const images = document.querySelectorAll('.main-col-image');
+
+  // Count the number of images
+  let imageCount = images.length;
+
+  // Function to track image load
+  function trackImageLoad() {
+    imageCount--;
+
+    if (imageCount === 0) startAnimations(images);
+  }
+  images.forEach(image => image.addEventListener('load', trackImageLoad));
+});
+
+function startAnimations(images) {
+
+  const windowElement = document.querySelector('.window');
+  const welcomeElement = document.querySelector('.welcome');
+ 
+  setTimeout(() => {
+    windowElement.style.animation = 'fade-out 4s cubic-bezier(.74, .06, .4, .92) forwards';
+    
+  }, 2000);
+
+  setTimeout(() => {
+    welcomeElement.style.animation = 'none';
+    welcomeElement.style.animation = 'fade-welcome-out 2s cubic-bezier(.74, .06, .4, .92) forwards';
+  }, 1000);
+  setTimeout(() => {
+    images.forEach((image, index) => {
+      gsap.set(image, { opacity: 0 });
+      gsap.to(image, {
+        opacity: 1,
+        duration: 1,
+        delay: index * 0.2, // Delay each image by 0.2 seconds
+        ease: 'power2.out' // Easing function
+      });
+    });
+    body.style.overflow = 'auto';
+  }
+  , 3500);
+}
+
+
+const scrollingDivs = document.querySelectorAll('.main-col.lo');
 function resetScrollPositions() {
     scrollingDivs.forEach(scrollingDiv => {
         scrollingDiv.style.transform = `translateY(0)`;
