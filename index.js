@@ -58,7 +58,7 @@ function startAnimations(images) {
     });
     body.style.overflow = 'auto';
   }
-  , 3500);
+  , 2500);
 }
 
 
