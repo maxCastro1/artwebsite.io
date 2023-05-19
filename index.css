@@ -209,6 +209,7 @@ main{
     aspect-ratio: 1 / 1.8;
     object-fit: cover;
     height: 100%;
+      opacity:0;
     
   }
   .lo{
