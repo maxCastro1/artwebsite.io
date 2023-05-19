@@ -12,7 +12,8 @@ body,main{
   position: absolute;
   inset: 0;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
+  height:100%;
   /* animation: fade-out 4s cubic-bezier(.74, .06, .4, .92) forwards;
   animation-delay: 7s; */
   z-index: 10;
