@@ -140,7 +140,9 @@ p {
     animation-duration: 11s;
 }
 
-
+#x{
+    z-index: 3;
+}
 
 @keyframes animate {
 

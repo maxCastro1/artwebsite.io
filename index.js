@@ -10,13 +10,8 @@ const navLinkBar = document.getElementsByClassName("nav-link")
 
 let bodyStatus = document.body.dataset.nav
 
-
-
-
-
-
-
 document.addEventListener('DOMContentLoaded', function() {
+
   // Get all the images with the "main-col-image" class
   const images = document.querySelectorAll('.main-col-image');
 
@@ -52,13 +47,15 @@ function startAnimations(images) {
       gsap.to(image, {
         opacity: 1,
         duration: 1,
-        delay: index * 0.2, // Delay each image by 0.2 seconds
-        ease: 'power2.out' // Easing function
+        delay: index * 0.2, 
+        ease: 'power2.out' 
       });
     });
     body.style.overflow = 'auto';
+    button.style.zIndex = '3';
+    button.style.animation = 'button-in 2s cubic-bezier(.74, .06, .4, .92) forwards';
   }
-  , 3500);
+  , 2500);
 }
 
 
@@ -79,7 +76,7 @@ const toggleNav = () =>{
         iconClose.style.opacity = 1
         iconMenu.style.opacity = 0  
         navLinks.style.transform="translateY(0%) scale(1)"
-        resetScrollPositions()
+      
     
     }
     else{
@@ -88,6 +85,7 @@ const toggleNav = () =>{
         navLinks.style.transform="translateY(70%) scale(0.9)"
         iconClose.style.opacity = 0
         iconMenu.style.opacity = 1
+        resetScrollPositions()
 
     }
 } 
@@ -109,9 +107,13 @@ button.onmouseout= () => {
 }
 
 window.addEventListener('scroll', () => {
+  const mainColHeight = document.querySelector('.main-col').offsetHeight;
+  const loColHeight = document.querySelector('.main-col.lo').offsetHeight;
+  const heightDifference = mainColHeight - loColHeight;
+  
   const scrollPercentage = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-  const translatePercentage = 12 * scrollPercentage;
-
+  const translatePercentage = (12 + (heightDifference * 5 / mainColHeight)) * scrollPercentage;
+  
   scrollingDivs.forEach(scrollingDiv => {
     scrollingDiv.style.transform = `translateY(${translatePercentage}%)`;
     scrollingDiv.style.transformOrigin = 'center center';
